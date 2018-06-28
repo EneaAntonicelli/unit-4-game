@@ -1,13 +1,11 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
     <title>jQuery Demo</title>
-    <link rel="stylesheet" href="assets/css/reset.css">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
         crossorigin="anonymous">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style2.css">
 
 </head>
 
@@ -17,23 +15,21 @@
             <div class="col-md-12">
                 <h1 id="main-title">HOKUTO NO KEN</h1>
                 <h2 id="sub-title">CHOOSE YOUR FIGHTER:</h2>
-                <div id="characters heros" class="row-container">
+                <div id="character-choices" class="row-container">
                     <!--           dynamically insert each character -->
-
-
                 </div>
             </div>
         </div>
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-md-4  selection-img">
+            <div class="col-md-4  selection-img" id="selected-hero">
                 <!--     Hero selection image populated dynamically      -->
             </div>
             <div class="col-md-4  selection-img">
                 <button class="btn attack-button">ATTACK</button>
             </div>
-            <div class="col-md-4  selection-img">
+            <div class="col-md-4  selection-img .enemy" id="opponent">
                 <!--     Opponent selection image populated dynamically      -->
             </div>
         </div>
@@ -41,7 +37,5 @@
     <footer>Made by Enea Antonicelli</footer>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="assets/javascript/game.js"></script>
+    <script src="assets/javascript/game2.js"></script>
 </body>
-
-</html>
