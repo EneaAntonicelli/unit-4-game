@@ -9,8 +9,14 @@
   h2 {
     font-family: 'Waiting for the Sunrise';
     font-size: 3em;
-    
   }
+  /* .hp {
+    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+  } */
 
   #backgroundimg {
     margin: 0 auto;

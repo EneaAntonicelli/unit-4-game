@@ -47,6 +47,8 @@ $(document).ready(function () {
 
 
     // var gameStarted = false;
+
+
     $('.character-img').click(function () {
         
         if(heroChosen == false) {
