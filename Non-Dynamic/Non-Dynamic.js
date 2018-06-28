@@ -2,7 +2,9 @@ $(document).ready(function () {
 
     //GLOBAL 
     var characters = $('.character-img');
-    var hero;
+    var heroChosen = false;
+    var opponentChosen = false;
+    var killCount = 0;
 
     //CHARACTER ARRAY
 
@@ -43,6 +45,7 @@ $(document).ready(function () {
 
     //**FUNCTIONS**
 
+
     // var gameStarted = false;
 
 
@@ -50,20 +53,22 @@ $(document).ready(function () {
         for (var i = 0; i < characters.length; i++) {
             if (characters[i] == this) {
                 $('.hero').append(characters[i]);
-                $('.character-img').removeClass(".character-img").addClass('enemy');
+                $('.character-img').removeClass(".character-img").addClass('.enemy');
+                heroChosen = true;
 
             }
         }
     });
 
     $('.enemy').click(function () {
+        if (heroChosen == true && opponentChosen == false && killCount == 0);
         for (var i = 0; i < characters.length; i++) {
             if (characters[i] == this) {
                 $('.opponent').append(characters[i]);
             }
         }
     });
-   
+
 
 
     // gameStarted = true;

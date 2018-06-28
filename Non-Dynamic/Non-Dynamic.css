@@ -50,6 +50,18 @@
     display: block;
     pointer-events:none;
   }
+
+  .opponent {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  .opponent img {
+    margin: 0 auto;
+    height: 400px;
+    display: block;
+    pointer-events:none;
+  }
   .selection-img {
     width: 90%;
     height: 300px;
@@ -85,39 +97,4 @@
     margin: 40px;
     font-size: .5em;   
   }
-  .attackLogo:after {
-    content: "";
-    position: absolute;
-    top: -110%;
-    left: -210%;
-    width: 200%;
-    height: 200%;
-    opacity: 0;
-    transform: rotate(30deg);
-    
-    background: rgba(255, 255, 255, 0.13);
-    background: linear-gradient(
-      to right, 
-      rgba(255, 255, 255, 0.13) 0%,
-      rgba(255, 255, 255, 0.13) 77%,
-      rgba(255, 255, 255, 0.5) 92%,
-      rgba(255, 255, 255, 0.0) 100%
-    );
-    }
-    
-    /* Hover state - trigger effect */
-    
-    .attackLogo:hover:after {
-    opacity: 1;
-    top: -30%;
-    left: -30%;
-    transition-property: left, top, opacity;
-    transition-duration: 0.7s, 0.7s, 0.15s;
-    transition-timing-function: ease;
-    }
-    
-    /* Active state */
-    
-    .AttackLogo:active:after {
-    opacity: 0;
-    }
+  
