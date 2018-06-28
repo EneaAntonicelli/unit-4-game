@@ -1,12 +1,12 @@
 $(document).ready(function () {
 
     //GLOBAL 
-
-
+    var characters = $('.character-img');
+    var hero;
 
     //CHARACTER ARRAY
 
-    var characters = [
+    var characterArray = [
 
         kenshiro = {
             name: "Kenshiro",
@@ -42,37 +42,43 @@ $(document).ready(function () {
     ];
 
     //**FUNCTIONS**
-    var characters = $('.character-img');
+
     // var gameStarted = false;
 
 
     $('.character-img').click(function () {
         for (var i = 0; i < characters.length; i++) {
-                if (characters[i] == this) {
-                            $('.hero').append(characters[i]);
-                }
+            if (characters[i] == this) {
+                $('.hero').append(characters[i]);
+                $('.character-img').removeClass(".character-img").addClass('enemy');
+
             }
-        });
-            
-        
-                    // if (characters[i] != this) {
-                    //     $(characters[i]).addClass("redBorder")
-                    // };
+        }
+    });
+
+    $('.enemy').click(function () {
+        for (var i = 0; i < characters.length; i++) {
+            if (characters[i] == this) {
+                $('.opponent').append(characters[i]);
+            }
+        }
+    });
+   
 
 
-                    // gameStarted = true;
-                    // //if the image is clicked, it moves to new row
-                    // $('#enemiesAvailable img.character').click(function () {
-                    //     
+    // gameStarted = true;
+    // //if the image is clicked, it moves to new row
+    // $('#enemiesAvailable img.character').click(function () {
+    //     
 
-                    //         if (characters[i] = this) {
-                    //             $(characters[i]).removeClass("redBorder").addClass('yellowBorder')
-                    //         };
+    //         if (characters[i] = this) {
+    //             $(characters[i]).removeClass("redBorder").addClass('yellowBorder')
+    //         };
 
-                    //     }
+    //     }
 
-                    // });
-                
+    // });
+
 
 
 
