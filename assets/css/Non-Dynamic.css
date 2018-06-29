@@ -85,7 +85,6 @@
     height: 300px;
     margin: 0;
     padding: 0;
-    
   }
 
   
@@ -94,6 +93,14 @@
       width: 50%; 
       margin: 0 auto;
       display: block;
+  }
+  #attackInfo {
+    font-family: 'Waiting for the Sunrise';
+    font-size: 1em;
+    color: black;
+    margin-left: 20px;
+    margin-top: 40px;
+
   }
   
   .redBorder {
