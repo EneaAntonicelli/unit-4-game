@@ -24,12 +24,12 @@ $(document).ready(function () {
         },
 
         
-        rei = {
-            name: "Rei",
-            technique: "Nanto Suichoken",
+        mamiya = {
+            name: "Mamiya",
+            technique: "Yo-Yos, Emeici, Crossbow",
             hp: 120,
             attackPower: 8,
-            image: '<img src="assets/images/rei.png" class="image">'
+            image: '<img src="assets/images/mamiya.png" class="image">'
         },
 
         raoh = {
@@ -46,6 +46,20 @@ $(document).ready(function () {
             hp: 120,
             attackPower: 8,
             image: '<img src="assets/images/heart.png" class="image">'
+        },
+        shu = {
+            name: "Shu",
+            technique: "Nanto Hakuro Ken",
+            hp: 120,
+            attackPower: 8,
+            image: '<img src="assets/images/shu.png" class="image">'
+        },
+        kaioh = {
+            name: "Kaioh",
+            technique: "Hokuto Sōke no Ken",
+            hp: 120,
+            attackPower: 8,
+            image: '<img src="assets/images/kaioh.png" class="image">'
         },
     ];
 
@@ -71,7 +85,6 @@ $(document).ready(function () {
                 if (characters[i] == this) {
                     opponentChosen = true;
                     $('.opponent').append(characters[i]);
-                    $('.enemy').css('display','none');
 
                 } // end of if
             } // end for loop
