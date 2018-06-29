@@ -6,9 +6,20 @@
     text-align: center;
     padding: 20px;
   }
+  .container {
+    width: 960px;
+  }
+
   h2 {
     font-family: 'Waiting for the Sunrise';
     font-size: 3em;
+  }
+  
+  .stats {
+    font-family: 'Waiting for the Sunrise';
+    font-size: 1em;
+    color: black;
+    margin-left: 20px;
   }
   /* .hp {
     margin: 0 auto;
@@ -22,21 +33,22 @@
     margin: 0 auto;
     display: block;
   }
-
   #characters {
     width: 100%;
     text-align: center;
   }
-
   .character {
     position: relative;
   }
   .character-img {
-    float: left;
+    /* float: left; */
+    margin: 0 auto 20px;
+    
+    display: block;
     transition: transform .2s;
   }
   .enemy {
-    float: left;
+    /* float: left; */
     transition: transform .2s;
   }
   .character-img:hover {
@@ -75,14 +87,7 @@
     padding: 0;
     
   }
-  .stats h1 {
-    position: absolute;
-    font-size: 1em;
-    float: left; 
-    display: inline;
-    
-    
-  }
+
   
   .attackLogo {
      
@@ -103,4 +108,5 @@
     margin: 40px;
     font-size: .5em;   
   }
+  
   

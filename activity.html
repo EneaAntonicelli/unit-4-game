@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+
+<body>
+    <script>
+
+        var files = [
+            "pavans_first_birthday.mov",
+            "owens_asleep_at_the_computer.jpg",
+            "michael_fights_a_polar_bear.mp4",
+            "nate_road_rage.avi",
+            "ruby_skydiving.jpeg",
+            "ken_getting_his_black_belt.png",
+            "dan_winning_underground_street_race.mov",
+            "its_hard_to_come_up_with_file_names.gif",
+            "seriously_this_is_taking_too_long.mpg",
+            "i_wonder_how_many_of_these_i_should_have.png",
+            "probably_a_few_more.avi",
+            "nutmeg_is_clawing_my_sneakers_again.mp4",
+            "cat_i_will_destroy_you.gif",
+            "i_wish_we_had_a_dog.jpeg",
+            "stop_looking_at_me_like_that_nutmeg.mpeg",
+            "aww_i_cant_hate_you.png",
+            "omg_my_sneakers.avi",
+            "cat_you_are_the_worst.mp4"
+        ];
+
+        var images = [];
+        var videos = [];
+
+        for (var i = 0; i < files.length; i++) {
+
+            if (files[i].endsWith(".mov") || 
+                files[i].endsWith(".mp4") || 
+                files[i].endsWith(".avi") ||
+                files[i].endsWith(".mpeg")) {
+                
+                videos.push(files[i]);
+
+            } else if ( files[i].endsWith(".jpg") || 
+                        files[i].endsWith(".png") || 
+                        files[i].endsWith(".gif")) {
+
+                images.push(files[i]);
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>>

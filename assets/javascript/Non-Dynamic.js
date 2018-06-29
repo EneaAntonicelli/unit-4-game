@@ -1,15 +1,20 @@
 $(document).ready(function () {
 
     //GLOBAL 
-    var characters = $('.character-img');
+    var characters = $('.character');
     var heroChosen = false;
     var opponentChosen = false;
     var killCount = 0;
+    var damage = 0;
+
+    //YOU NEED SEPARATE ARRAY OBJECTS BECAUSE THE OBJECT WILL HOLD MULTIPLE KEYS AND VALUES THAT CORRESPOND TO THE CHOSEN CHARACTER
+
+
 
     //CHARACTER ARRAY
 
     var characterArray = [
-
+        
         kenshiro = {
             name: "Kenshiro",
             technique: "Hokuto Shin Ken",
@@ -18,6 +23,7 @@ $(document).ready(function () {
             image: '<img src="assets/images/kenshiro.png" class="image">'
         },
 
+        
         rei = {
             name: "Rei",
             technique: "Nanto Suichoken",
@@ -46,15 +52,14 @@ $(document).ready(function () {
     //**FUNCTIONS**
 
 
-    // var gameStarted = false;
-    $('.character-img').click(function () {
-        
-        if(heroChosen == false) {
+    $('.character').click(function () {
+
+        if (heroChosen == false) {
 
             for (var i = 0; i < characters.length; i++) {
                 if (characters[i] == this) {
                     $('.hero').append(characters[i]);
-                    $('.character-img').removeClass(".character-img").addClass('.enemy');
+                    $('.character').removeClass(".character").addClass('.enemy');
                     heroChosen = true;
                 } // if
             } // for loop
@@ -66,13 +71,45 @@ $(document).ready(function () {
                 if (characters[i] == this) {
                     opponentChosen = true;
                     $('.opponent').append(characters[i]);
+                    $('.enemy').css('display','none');
+
                 } // end of if
             } // end for loop
 
         } // end if 
-        
+
     }); // end of click function
 
 
 
+
 });       //END OF DOCUMENT READY
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//****SCRATCH NOTES****
+
+// ON ATTACK CLICK, TAKE HERO ATTACK VALUE AND SUBTRACT IT FROM OPPONENT HEALTH
+// DISPLAY damage = "YOU ATTACKED" + OPPONENT.NAME + "FOR" + hero.attackPower"
+
+// INCREASE ATTACK VALUE BY TURNCOUNTER EXPONENTIAL INCREMENT ++
+// TAKE OPPONENT ATTACK VALUE AND SUBTRACT IT FROM THE HERO HEALTH
+
+//SET A CHARACTER ARRAY FROM THE HTML IDS CORRESPONDING TO EACH CHARACTER
