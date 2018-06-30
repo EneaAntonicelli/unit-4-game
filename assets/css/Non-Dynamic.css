@@ -130,11 +130,12 @@
       display: block;
       text-align: center;
       pointer-events:none;
-    }p {
+  }
+  p {
       width: 80%;
     }
 
-  }
+  
 
   @media only screen and (max-width: 600px) {
     .container {

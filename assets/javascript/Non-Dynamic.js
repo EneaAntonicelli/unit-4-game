@@ -65,7 +65,9 @@ $(document).ready(function () {
                     heroSwitch = true;
                     heroChosen = this;
                     heroData = characterDict[this.id];
-                    var $container = $('.hero.character.stats');
+                    console.log(heroData);
+                    var $container = $('.character .stats');
+                    console.log($container);
                     $container.append("ID: " + this.id);
                     $container.append("Name: " + heroData.name);
                     $container.append("Technique: " + heroData.technique);
