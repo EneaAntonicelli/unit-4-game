@@ -1,14 +1,15 @@
-
+.container {
+  width: 960px;
+  margin: 0 auto;
+}
 
 #main-title, #sub-title {
-    widows: 100%;
+    width: 100%;
     margin: 0 auto;
     text-align: center;
     padding: 20px;
   }
-  .container {
-    width: 960px;
-  }
+
 
   h2 {
     font-family: 'Waiting for the Sunrise';
@@ -87,6 +88,9 @@
     padding: 0;
   }
 
+  .hero.character.stats {
+    width: 100%;
+  }
   
   .attackLogo {
      
@@ -116,4 +120,46 @@
     font-size: .5em;   
   }
   
+  @media only screen and (max-width: 768px) {
+    .container {
+    width: 768px;
+    }
+    .hero img, .opponent img {
+      margin: 0 auto;
+      height: 300px;
+      display: block;
+      text-align: center;
+      pointer-events:none;
+    }p {
+      width: 80%;
+    }
+
+  }
+
+  @media only screen and (max-width: 600px) {
+    .container {
+      width: 600px;
+    }
+  .hero img, .opponent img {
+      margin: 0 auto;
+      height: 200px;
+      display: block;
+      text-align: center;
+      pointer-events:none;
+    }
   
+   p {
+      width: 80%;
+      margin: 0 auto;
+    }
+  #attackInfo {
+    margin: 0;
+  }
+  
+  
+  /* h3.stats {
+    width: 100px;
+    margin: 0 auto;
+  } */
+    
+}

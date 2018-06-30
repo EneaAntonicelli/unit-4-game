@@ -1,70 +1,58 @@
+//GLOBAL 
+var characters = $('.character');
+var heroSwitch = false;
+var opponentSwitch = false;
+var heroChosen = false;
+var opponentChosen = false;
+var killCount = 0;
+var damage = 0;
+
+var characterDict = {
+    kenshiro: {
+        name: "Kenshiro",
+        technique: "Hokuto Shin Ken",
+        hp: 120,
+        attackPower: 8,
+        image: '<img src="assets/images/kenshiro.png" class="image">'
+    },
+    mamiya: {
+        name: "Mamiya",
+        technique: "Yo-Yos, Emeici, Crossbow",
+        hp: 120,
+        attackPower: 8,
+        image: '<img src="assets/images/mamiya.png" class="image">'
+    },
+    raoh: {
+        name: 'Raoh',
+        technique: 'Hokuto Shin Ken ',
+        hp: 120,
+        attackPower: 8,
+        image: '<img src="assets/images/raoh.png" class="image">'
+    },
+    heart: {
+        name: 'Heart',
+        technique: 'Kenpo Goroshi',
+        hp: 120,
+        attackPower: 8,
+        image: '<img src="assets/images/heart.png" class="image">'
+    },
+    shu: {
+        name: 'Shu',
+        technique: 'Kenpo Goroshi',
+        hp: 120,
+        attackPower: 8,
+        image: '<img src="assets/images/shu.png" class="image">'
+    },
+    kaioh: {
+        name: 'Kaioh',
+        technique: 'Kenpo Goroshi',
+        hp: 120,
+        attackPower: 8,
+        image: '<img src="assets/images/kaioh.png" class="image">'
+    }
+}
+
 $(document).ready(function () {
-
-    //GLOBAL 
-    var characters = $('.character');
-    var heroChosen = false;
-    var opponentChosen = false;
-    var killCount = 0;
-    var damage = 0;
-
-    //YOU NEED SEPARATE ARRAY OBJECTS BECAUSE THE OBJECT WILL HOLD MULTIPLE KEYS AND VALUES THAT CORRESPOND TO THE CHOSEN CHARACTER
-
-
-
-    //CHARACTER ARRAY
-
-    var characterArray = [
-        
-        kenshiro = {
-            name: "Kenshiro",
-            technique: "Hokuto Shin Ken",
-            hp: 120,
-            attackPower: 8,
-            image: '<img src="assets/images/kenshiro.png" class="image">'
-        },
-
-        
-        mamiya = {
-            name: "Mamiya",
-            technique: "Yo-Yos, Emeici, Crossbow",
-            hp: 120,
-            attackPower: 8,
-            image: '<img src="assets/images/mamiya.png" class="image">'
-        },
-
-        raoh = {
-            name: "Raoh",
-            technique: "Hokuto Shin Ken ",
-            hp: 120,
-            attackPower: 8,
-            image: '<img src="assets/images/raoh.png" class="image">'
-        },
-
-        heart = {
-            name: "Heart",
-            technique: "Kenpo Goroshi",
-            hp: 120,
-            attackPower: 8,
-            image: '<img src="assets/images/heart.png" class="image">'
-        },
-        shu = {
-            name: "Shu",
-            technique: "Nanto Hakuro Ken",
-            hp: 120,
-            attackPower: 8,
-            image: '<img src="assets/images/shu.png" class="image">'
-        },
-        kaioh = {
-            name: "Kaioh",
-            technique: "Hokuto Sōke no Ken",
-            hp: 120,
-            attackPower: 8,
-            image: '<img src="assets/images/kaioh.png" class="image">'
-        },
-    ];
-
-    //**FUNCTIONS**
-
 
     $('.character').click(function () {
 
@@ -74,17 +62,34 @@ $(document).ready(function () {
                 if (characters[i] == this) {
                     $('.hero').append(characters[i]);
                     $('.character').removeClass(".character").addClass('.enemy');
-                    heroChosen = true;
+                    heroSwitch = true;
+                    heroChosen = this;
+                    heroData = characterDict[this.id];
+                    var $container = $('.hero.character.stats');
+                    $container.append("ID: " + this.id);
+                    $container.append("Name: " + heroData.name);
+                    $container.append("Technique: " + heroData.technique);
+                    $container.append("Health: " + heroData.hp);
                 } // if
             } // for loop
 
         } // if
-        else if (heroChosen == true && opponentChosen == false && killCount == 0) {
+        else if (heroSwitch == true && opponentChosen == false && killCount == 0) {
 
             for (var i = 0; i < characters.length; i++) {
                 if (characters[i] == this) {
-                    opponentChosen = true;
                     $('.opponent').append(characters[i]);
+                    $('.character-section').css('display', 'none');
+                    opponentSwitch = true;
+                    opponentChosen = this;
+                    opponentData = characterDict[this.id];
+                    var $container = $('.hero.character.stats');
+                    $container.append("ID: " + this.id);
+                    $container.append("Name: " + opponentData.name);
+                    $container.append("Technique: " + opponentData.technique);
+                    $container.append("Health: " + opponentData.hp);
+
+                    
 
                 } // end of if
             } // end for loop
@@ -92,11 +97,12 @@ $(document).ready(function () {
         } // end if 
 
     }); // end of click function
+});
 
 
 
 
-});       //END OF DOCUMENT READY
+
 
 
 
@@ -126,3 +132,4 @@ $(document).ready(function () {
 // TAKE OPPONENT ATTACK VALUE AND SUBTRACT IT FROM THE HERO HEALTH
 
 //SET A CHARACTER ARRAY FROM THE HTML IDS CORRESPONDING TO EACH CHARACTER
+
