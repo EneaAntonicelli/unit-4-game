@@ -54,6 +54,17 @@ var characterDict = {
 
 $(document).ready(function () {
 
+    $('.character').each(function(index) {
+        var $character = $(this);
+        var characterData = characterDict[this.id];
+        $character.find('.technique').append(characterData.technique);
+        $character.find('.health').append(characterData.hp);
+        $character.find('.attackPower').append(characterData.attackPower);
+        // etc.
+      });
+      
+
+
     $('.character').click(function () {
 
         if (heroChosen == false) {
@@ -63,15 +74,7 @@ $(document).ready(function () {
                     $('.hero').append(characters[i]);
                     $('.character').removeClass(".character").addClass('.enemy');
                     heroSwitch = true;
-                    heroChosen = this;
-                    heroData = characterDict[this.id];
-                    console.log(heroData);
-                    var $container = $('.character .stats');
-                    console.log($container);
-                    $container.append("ID: " + this.id);
-                    $container.append("Name: " + heroData.name);
-                    $container.append("Technique: " + heroData.technique);
-                    $container.append("Health: " + heroData.hp);
+                    heroChosen = $(this);
                 } // if
             } // for loop
 
@@ -83,22 +86,27 @@ $(document).ready(function () {
                     $('.opponent').append(characters[i]);
                     $('.character-section').css('display', 'none');
                     opponentSwitch = true;
-                    opponentChosen = this;
-                    opponentData = characterDict[this.id];
-                    var $container = $('.hero.character.stats');
-                    $container.append("ID: " + this.id);
-                    $container.append("Name: " + opponentData.name);
-                    $container.append("Technique: " + opponentData.technique);
-                    $container.append("Health: " + opponentData.hp);
-
-                    
-
+                    opponentChosen = $(this);
                 } // end of if
             } // end for loop
 
         } // end if 
 
     }); // end of click function
+
+    $('.attackLogo').click(function() {
+        damage++;
+        console.log(opponentChosen);
+        var opponentHP = opponentChosen.find(".stats.health");
+        console.log(parseInt(opponentHP.text()));
+        //console.log(opponentChosen.hp);
+
+        //opponentChosen.hp = opponentChosen.hp - (heroChosen.attackPower * damage);
+        //console.log(opponentChosen);
+
+        //$('#attackInfo').text(opponentChosen.hp + " now");
+        // etc.
+      });
 });
 
 
