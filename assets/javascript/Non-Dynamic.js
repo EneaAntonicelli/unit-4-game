@@ -72,7 +72,8 @@ $(document).ready(function () {
             for (var i = 0; i < characters.length; i++) {
                 if (characters[i] == this) {
                     $('.hero').append(characters[i]);
-                    $('.character').removeClass(".character").addClass('.enemy');
+                    $('.character').removeClass("character").addClass('enemy');
+                    $('.hero').find('.enemy').removeClass("character col-md-2 col-sm-4 col-xs-6 enemy");
                     heroSwitch = true;
                     heroChosen = $(this);
                 } // if
@@ -85,6 +86,8 @@ $(document).ready(function () {
                 if (characters[i] == this) {
                     $('.opponent').append(characters[i]);
                     $('.character-section').css('display', 'none');
+                    $('.opponent').find('.enemy').removeClass("character col-md-2 col-sm-4 col-xs-6 enemy");
+
                     opponentSwitch = true;
                     opponentChosen = $(this);
                 } // end of if
@@ -100,11 +103,17 @@ $(document).ready(function () {
         var hero = characterDict[heroChosen.attr('id')];
         oppo.hp -= hero.attackPower * damage;
 
-        if (oppo.hp < 0) {
-            console.log('he ded');
-        }
+        if (oppo.hp === 0 || oppo.hp < 0) {
+        $('#attackInfo').text("You killed your opponent!");
+        $('.opponent').html('');
+        opponentChosen = false;
+        opponentSwitch = true;
+        $('.character-section').css('display', 'flex');
+        
+        } else {
         $('#attackInfo').text("You hit your opponent for " + (hero.attackPower*damage) + ". Your opponent's health is now at: " + oppo.hp);
         // etc.
+        }
       });
 });
 

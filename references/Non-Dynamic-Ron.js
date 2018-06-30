@@ -78,3 +78,27 @@ $(document).ready(function () {
 
 
 });       //END OF DOCUMENT READY
+
+
+
+
+
+
+
+
+//ATTACK BUTTON THIS WORKS!!! SAVING HERE FOR OTHER FILE
+
+
+$('.attackLogo').click(function() {
+    damage++;
+    var oppo = characterDict[opponentChosen.attr('id')];
+    var hero = characterDict[heroChosen.attr('id')];
+    oppo.hp -= hero.attackPower * damage;
+
+    if (oppo.hp < 0) {
+        console.log('he ded');
+    }
+    $('#attackInfo').text("You hit your opponent for " + (hero.attackPower*damage) + ". Your opponent's health is now at: " + oppo.hp);
+    // etc.
+  });
+});
