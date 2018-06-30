@@ -1,121 +1,98 @@
-$(document).ready(function () {
+//GLOBAL
+const characterClass = '.character';
+const characters = $(characterClass);
+let heroChosen = false;
+let opponentChosen = false;
+const killCount = 0;
+const damage = 0;
 
-    //GLOBAL 
-    var characters = $('.character');
-    var heroChosen = false;
-    var opponentChosen = false;
-    var killCount = 0;
-    var damage = 0;
+//YOU NEED SEPARATE ARRAY OBJECTS BECAUSE THE OBJECT WILL HOLD MULTIPLE KEYS AND VALUES THAT CORRESPOND TO THE
+// CHOSEN CHARACTER
 
-    //YOU NEED SEPARATE ARRAY OBJECTS BECAUSE THE OBJECT WILL HOLD MULTIPLE KEYS AND VALUES THAT CORRESPOND TO THE CHOSEN CHARACTER
+//CHARACTER ARRAY
 
+const characterArray = [
+  {
+    name: 'Kenshiro',
+    technique: 'Hokuto Shin Ken',
+    hp: 120,
+    attackPower: 8,
+    image: '<img src="assets/images/kenshiro.png" class="image">'
+  },
+  {
+    name: 'Rei',
+    technique: 'Nanto Suichoken',
+    hp: 120,
+    attackPower: 8,
+    image: '<img src="assets/images/rei.png" class="image">'
+  },
+  {
+    name: 'Raoh',
+    technique: 'Hokuto Shin Ken ',
+    hp: 120,
+    attackPower: 8,
+    image: '<img src="assets/images/raoh.png" class="image">'
+  },
+  {
+    name: 'Heart',
+    technique: 'Kenpo Goroshi',
+    hp: 120,
+    attackPower: 8,
+    image: '<img src="assets/images/heart.png" class="image">'
+  }
+];
 
+characterArray.forEach((character) => {
+  const name = '#' + character.name.toLowerCase();
+  $(name + ' > .technique')
+    .text('Technique: ' + character.technique);
+  $(name + ' > .health')
+    .text('Health: ' + character.hp);
+  $(name + ' > .attackPower')
+    .text('Attack Power: ' + character.attackPower);
 
-    //CHARACTER ARRAY
+});
+//**FUNCTIONS**
+$(document)
+  .ready(function () {
 
-    var characterArray = [
-        
-        kenshiro = {
-            name: "Kenshiro",
-            technique: "Hokuto Shin Ken",
-            hp: 120,
-            attackPower: 8,
-            image: '<img src="assets/images/kenshiro.png" class="image">'
-        },
+    $('.character')
+      .click(function () {
+        console.log(this);
 
-        
-        mamiya = {
-            name: "Mamiya",
-            technique: "Yo-Yos, Emeici, Crossbow",
-            hp: 120,
-            attackPower: 8,
-            image: '<img src="assets/images/mamiya.png" class="image">'
-        },
+        let i;
+        if (heroChosen === false) {
 
-        raoh = {
-            name: "Raoh",
-            technique: "Hokuto Shin Ken ",
-            hp: 120,
-            attackPower: 8,
-            image: '<img src="assets/images/raoh.png" class="image">'
-        },
-
-        heart = {
-            name: "Heart",
-            technique: "Kenpo Goroshi",
-            hp: 120,
-            attackPower: 8,
-            image: '<img src="assets/images/heart.png" class="image">'
-        },
-        shu = {
-            name: "Shu",
-            technique: "Nanto Hakuro Ken",
-            hp: 120,
-            attackPower: 8,
-            image: '<img src="assets/images/shu.png" class="image">'
-        },
-        kaioh = {
-            name: "Kaioh",
-            technique: "Hokuto Sōke no Ken",
-            hp: 120,
-            attackPower: 8,
-            image: '<img src="assets/images/kaioh.png" class="image">'
-        },
-    ];
-
-    //**FUNCTIONS**
-
-
-    $('.character').click(function () {
-
-        if (heroChosen == false) {
-
-            for (var i = 0; i < characters.length; i++) {
-                if (characters[i] == this) {
-                    $('.hero').append(characters[i]);
-                    $('.character').removeClass(".character").addClass('.enemy');
-                    heroChosen = true;
-                } // if
-            } // for loop
+          for (i = 0; i < characters.length; i++) {
+            console.log(characters[i] === this);
+            if (characters[i] === this) {
+              $('.hero')
+                .append(characters[i]);
+              $('.character')
+                .removeClass('.character')
+                .addClass('.enemy');
+              heroChosen = true;
+            } // if
+          } // for loop
 
         } // if
-        else if (heroChosen == true && opponentChosen == false && killCount == 0) {
+        else if (heroChosen === true && opponentChosen === false && killCount === 0) {
+          for (i = 0; i < characters.length; i++) {
+            if (characters[i] === this) {
+              opponentChosen = true;
+              $('.opponent')
+                .append(characters[i]);
+              $('.enemy')
+                .css('display', 'none');
 
-            for (var i = 0; i < characters.length; i++) {
-                if (characters[i] == this) {
-                    opponentChosen = true;
-                    $('.opponent').append(characters[i]);
+            } // end of if
+          } // end for loop
 
-                } // end of if
-            } // end for loop
+        } // end if
 
-        } // end if 
+      }); // end of click function
 
-    }); // end of click function
-
-
-
-
-});       //END OF DOCUMENT READY
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  });       //END OF DOCUMENT READY
 
 //****SCRATCH NOTES****
 
