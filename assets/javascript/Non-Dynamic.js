@@ -96,15 +96,14 @@ $(document).ready(function () {
 
     $('.attackLogo').click(function() {
         damage++;
-        console.log(opponentChosen);
-        var opponentHP = opponentChosen.find(".stats.health");
-        console.log(parseInt(opponentHP.text()));
-        console.log(opponentChosen.hp);
+        var oppo = characterDict[opponentChosen.attr('id')];
+        var hero = characterDict[heroChosen.attr('id')];
+        oppo.hp -= hero.attackPower * damage;
 
-        opponentChosen.hp = opponentChosen.hp - (heroChosen.attackPower * damage);
-        console.log(opponentChosen);
-
-        $('#attackInfo').text(opponentChosen.hp + " now");
+        if (oppo.hp < 0) {
+            console.log('he ded');
+        }
+        $('#attackInfo').text("You hit your opponent for " + (hero.attackPower*damage) + ". Your opponent's health is now at: " + oppo.hp);
         // etc.
       });
 });
