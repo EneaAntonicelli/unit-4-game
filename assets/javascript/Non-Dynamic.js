@@ -99,12 +99,12 @@ $(document).ready(function () {
         console.log(opponentChosen);
         var opponentHP = opponentChosen.find(".stats.health");
         console.log(parseInt(opponentHP.text()));
-        //console.log(opponentChosen.hp);
+        console.log(opponentChosen.hp);
 
-        //opponentChosen.hp = opponentChosen.hp - (heroChosen.attackPower * damage);
-        //console.log(opponentChosen);
+        opponentChosen.hp = opponentChosen.hp - (heroChosen.attackPower * damage);
+        console.log(opponentChosen);
 
-        //$('#attackInfo').text(opponentChosen.hp + " now");
+        $('#attackInfo').text(opponentChosen.hp + " now");
         // etc.
       });
 });
