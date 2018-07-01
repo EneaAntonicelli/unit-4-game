@@ -1,4 +1,5 @@
-//GLOBAL 
+
+//GLOBAL VARIABLES
 
 var characters = $('.character');
 var heroSwitch = false;
@@ -6,8 +7,11 @@ var opponentSwitch = false;
 var heroChosen = false;
 var opponentChosen = false;
 var killCount = 0;
+var kills = 0;
 var deaths = 0;
 var damage = 0;
+
+// CHARACTER OBJECTS INSIDE A CHARACTER DICTIONARY
 
 var characterDict = {
     kenshiro: {
@@ -56,32 +60,36 @@ var characterDict = {
 
 $(document).ready(function () {
 
+    // INITIATE AUDIO PLAYER AT THE TOP LEFT OF THE SCREEN
+
     var result = $('#result')
 
-result.hide().html('<%= j @result %>').fadeIn(250);
-playAudio(result);
+    result.hide().html('<%= j @result %>').fadeIn(250);
+    playAudio(result);
 
-function playAudio(result){
-  if (result.html() === "Yes"){
+    function playAudio(result) {
+        if (result.html() === "Yes") {
 
-    $('#yes-audio').trigger('play')
-  }
-  else if (result.html() === "Nope."){
-    $('#no-audio').trigger('play')
-  }
+            $('#yes-audio').trigger('play')
+        }
+        else if (result.html() === "Nope.") {
+            $('#no-audio').trigger('play')
+        }
 
-}
+    }
 
-    $('.character').each(function(index) {
+    // CHARACTER ARRAY DATA BOUND TO CHARACTERS
+
+    $('.character').each(function (index) {
         var $character = $(this);
         var characterData = characterDict[this.id];
         $character.find('.technique').append(characterData.technique);
         $character.find('.health').append(characterData.hp);
         $character.find('.attackPower').append(characterData.attackPower);
-        // etc.
-      });
-      
+        
+    });
 
+    // CHARACTERS SELECTED AND MOVED TO CORRECT AREAS
 
     $('.character').click(function () {
 
@@ -94,10 +102,12 @@ function playAudio(result){
                     $('.hero').find('.enemy').removeClass("character col-md-2 col-sm-4 col-xs-6 enemy");
                     heroSwitch = true;
                     heroChosen = $(this);
-                } // if
-            } // for loop
+                } // END OF IF LOOP
 
-        } // if
+            } // END OF FOR LOOP
+
+        } // END OF FRUIT LOOP
+
         else if (heroSwitch == true && opponentChosen == false && killCount == 0) {
 
             for (var i = 0; i < characters.length; i++) {
@@ -108,41 +118,61 @@ function playAudio(result){
 
                     opponentSwitch = true;
                     opponentChosen = $(this);
-                } // end of if
-            } // end for loop
 
-        } // end if 
+                } // END OF IF STATEMENT
 
-    }); // end of click function
+            } // END OF FOR LOOP
 
-    $('.attackLogo').click(function() {
+        } // END IF STATEMENT
+
+    }); // END OF CLICK FUNCTION
+
+
+    // ATTACK FUNCTION
+
+    $('.attackLogo').click(function () {
         damage++;
         var oppo = characterDict[opponentChosen.attr('id')];
         var hero = characterDict[heroChosen.attr('id')];
         oppo.hp -= hero.attackPower * damage;
         hero.hp -= oppo.attackPower;
+
         if (oppo.hp === 0 || oppo.hp < 0) {
-        $('#attackInfo').text("You killed your opponent! Choose another.");
-        $('.opponent').html('');
-        opponentChosen = false;
-        opponentSwitch = true;
-        $('.character-section').css('display', 'flex');
-        
+            $('#attackInfo').text("You killed your opponent! Choose another.");
+            $('.opponent').html('');
+            opponentChosen = false;
+            opponentSwitch = true;
+            $('.character-section').css('display', 'flex');
+            kills++;
+            $("#kills").text("Current kills: " + kills);
+
         } else if (hero.hp === 0 || hero.hp < 0) {
             $('#sub-title').text("GAME OVER. YOU LOST.");
             $('.hero').css('display', 'flex');
             deaths++
-            $('#attackInfo').text("Your opponent has killed you.");
-        } 
+            heroChosen = false;
+            opponentChosen = false;
+            $('#attackInfo').text("Your opponent has killed you. CLICK HERE TO PLAY AGAIN.");
+
+            // TO DO: I AM ATTEMPTING TO UNBING EVERYTHING ONCE THE GAME IS OVER. UNFORTUNATELY THE CHARACTER CHOICE CAN STILL BE MADE.
+
+            $('.character, .opponent, .hero, .selection-img').off("click");
+
+        }
 
         else {
-        $('#attackInfo').text("You hit your opponent for " + (hero.attackPower*damage) + ". Your opponent's health is now at: " + oppo.hp + ". " + "Your opponent countered for: " + oppo.attackPower + " and left your health at " + hero.hp + ".");
-       
+            $('#attackInfo').text("You hit your opponent for " + (hero.attackPower * damage) + ". Your opponent's health is now at: " + oppo.hp + ". " + "Your opponent countered for: " + oppo.attackPower + " and left your health at " + hero.hp + ".");
+
         }
-      });
+    });//END OF ATTACK FUNCTION
 
+    // THIS ATTACKINFO CLICK RESETS THE GAME
 
-});
+    $('#attackInfo').click(function () {
+        location.reload();
+    });
+
+});// END OF DOCUMENT READY
 
 
 

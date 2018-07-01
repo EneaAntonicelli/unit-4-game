@@ -87,6 +87,7 @@
     margin: 0;
     padding: 0;
   }
+  
 
   .hero.character.stats {
     width: 100%;
@@ -105,6 +106,11 @@
     margin-left: 20px;
     margin-top: 40px;
 
+  }
+  #kills {
+    font-family: 'Waiting for the Sunrise';
+    text-align: center;
+    font-size: 1em;
   }
   
   #redfont {
