@@ -1,10 +1,12 @@
 //GLOBAL 
+
 var characters = $('.character');
 var heroSwitch = false;
 var opponentSwitch = false;
 var heroChosen = false;
 var opponentChosen = false;
 var killCount = 0;
+var deaths = 0;
 var damage = 0;
 
 var characterDict = {
@@ -18,41 +20,57 @@ var characterDict = {
     mamiya: {
         name: "Mamiya",
         technique: "Yo-Yos, Emeici, Crossbow",
-        hp: 120,
-        attackPower: 8,
+        hp: 100,
+        attackPower: 14,
         image: '<img src="assets/images/mamiya.png" class="image">'
     },
     raoh: {
         name: 'Raoh',
         technique: 'Hokuto Shin Ken ',
-        hp: 120,
-        attackPower: 8,
+        hp: 180,
+        attackPower: 20,
         image: '<img src="assets/images/raoh.png" class="image">'
     },
     heart: {
         name: 'Heart',
         technique: 'Kenpo Goroshi',
-        hp: 120,
-        attackPower: 8,
+        hp: 140,
+        attackPower: 20,
         image: '<img src="assets/images/heart.png" class="image">'
     },
     shu: {
         name: 'Shu',
         technique: 'Kenpo Goroshi',
-        hp: 120,
-        attackPower: 8,
+        hp: 130,
+        attackPower: 30,
         image: '<img src="assets/images/shu.png" class="image">'
     },
     kaioh: {
         name: 'Kaioh',
         technique: 'Kenpo Goroshi',
-        hp: 120,
-        attackPower: 8,
+        hp: 110,
+        attackPower: 10,
         image: '<img src="assets/images/kaioh.png" class="image">'
     }
 }
 
 $(document).ready(function () {
+
+    var result = $('#result')
+
+result.hide().html('<%= j @result %>').fadeIn(250);
+playAudio(result);
+
+function playAudio(result){
+  if (result.html() === "Yes"){
+
+    $('#yes-audio').trigger('play')
+  }
+  else if (result.html() === "Nope."){
+    $('#no-audio').trigger('play')
+  }
+
+}
 
     $('.character').each(function(index) {
         var $character = $(this);
@@ -102,19 +120,28 @@ $(document).ready(function () {
         var oppo = characterDict[opponentChosen.attr('id')];
         var hero = characterDict[heroChosen.attr('id')];
         oppo.hp -= hero.attackPower * damage;
-
+        hero.hp -= oppo.attackPower;
         if (oppo.hp === 0 || oppo.hp < 0) {
-        $('#attackInfo').text("You killed your opponent!");
+        $('#attackInfo').text("You killed your opponent! Choose another.");
         $('.opponent').html('');
         opponentChosen = false;
         opponentSwitch = true;
         $('.character-section').css('display', 'flex');
         
-        } else {
-        $('#attackInfo').text("You hit your opponent for " + (hero.attackPower*damage) + ". Your opponent's health is now at: " + oppo.hp);
-        // etc.
+        } else if (hero.hp === 0 || hero.hp < 0) {
+            $('#sub-title').text("GAME OVER. YOU LOST.");
+            $('.hero').css('display', 'flex');
+            deaths++
+            $('#attackInfo').text("Your opponent has killed you.");
+        } 
+
+        else {
+        $('#attackInfo').text("You hit your opponent for " + (hero.attackPower*damage) + ". Your opponent's health is now at: " + oppo.hp + ". " + "Your opponent countered for: " + oppo.attackPower + " and left your health at " + hero.hp + ".");
+       
         }
       });
+
+
 });
 
 

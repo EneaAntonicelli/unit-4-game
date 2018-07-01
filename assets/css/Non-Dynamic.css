@@ -64,7 +64,7 @@
     height: 100%;
   }
   .hero img {
-    margin: 0 auto;
+    margin: 0 auto 20px;
     height: 400px;
     display: block;
     pointer-events:none;
@@ -76,7 +76,7 @@
     height: 100%;
   }
   .opponent img {
-    margin: 0 auto;
+    margin: 0 auto 20px;
     height: 400px;
     display: block;
     pointer-events:none;
@@ -100,13 +100,18 @@
   }
   #attackInfo {
     font-family: 'Waiting for the Sunrise';
-    font-size: 1em;
+    font-size: 1.3em;
     color: black;
     margin-left: 20px;
     margin-top: 40px;
 
   }
   
+  #redfont {
+    font-size: 1.5em;
+    color: red;
+    font-family: 'Lovers Quarrel', cursive;
+  }
   .redBorder {
 
     border-color: red;
@@ -119,6 +124,13 @@
     margin: 40px;
     font-size: .5em;   
   }
+
+.audios, #result {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+}
   
   @media only screen and (max-width: 768px) {
     .container {
@@ -153,6 +165,7 @@
    p {
       width: 80%;
       margin: 0 auto;
+      
     }
   #attackInfo {
     margin: 0;
