@@ -1,5 +1,7 @@
 
 //GLOBAL VARIABLES
+var death_sound = new Audio("assets/audio/death.mp3")
+var select_sound = new Audio("assets/audio/select.mp3")
 
 var characters = $('.character');
 var heroSwitch = false;
@@ -92,7 +94,7 @@ $(document).ready(function () {
     // CHARACTERS SELECTED AND MOVED TO CORRECT AREAS
 
     $('.character').click(function () {
-
+        select_sound.play();
         if (heroChosen == false) {
 
             for (var i = 0; i < characters.length; i++) {
@@ -147,6 +149,7 @@ $(document).ready(function () {
             $("#kills").text("Current kills: " + kills);
 
         } else if (hero.hp === 0 || hero.hp < 0) {
+            death_sound.play();
             $('#sub-title').text("GAME OVER. YOU LOST.");
             $('.hero').css('display', 'flex');
             deaths++
