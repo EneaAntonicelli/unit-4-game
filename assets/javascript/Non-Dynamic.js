@@ -1,6 +1,7 @@
 
 //GLOBAL VARIABLES
 var death_sound = new Audio("assets/audio/death.mp3")
+var win_sound = new Audio("assets/audio/win.mp3")
 var select_sound = new Audio("assets/audio/select.mp3")
 
 var characters = $('.character');
@@ -88,7 +89,7 @@ $(document).ready(function () {
         $character.find('.technique').append(characterData.technique);
         $character.find('.health').append(characterData.hp);
         $character.find('.attackPower').append(characterData.attackPower);
-        
+
     });
 
     // CHARACTERS SELECTED AND MOVED TO CORRECT AREAS
@@ -133,11 +134,14 @@ $(document).ready(function () {
     // ATTACK FUNCTION
 
     $('.attackLogo').click(function () {
+        select_sound.play();
         damage++;
         var oppo = characterDict[opponentChosen.attr('id')];
         var hero = characterDict[heroChosen.attr('id')];
         oppo.hp -= hero.attackPower * damage;
         hero.hp -= oppo.attackPower;
+
+        // IF OPPONENT DIES, PLAY THE FOLLOWING
 
         if (oppo.hp === 0 || oppo.hp < 0) {
             $('#attackInfo').text("You killed your opponent! Choose another.");
@@ -146,7 +150,18 @@ $(document).ready(function () {
             opponentSwitch = true;
             $('.character-section').css('display', 'flex');
             kills++;
-            $("#kills").text("Current kills: " + kills);
+            $("#killtally").text("Current kills: " + kills);
+
+            // IF ALL OPPONENTS ARE DEFEATED, PLAY THE FOLLOWING
+
+            if (hero.hp > 0 && kills == 5) {
+                win_sound.play();
+                $('#sub-title').text("YOU WON!");
+                $('#attackInfo').text("You have defeated all opponents. CLICK HERE TO PLAY AGAIN.");
+            }
+            console.log(kills);
+
+            // IF HERO DIES, PLAY THE FOLLOWING 
 
         } else if (hero.hp === 0 || hero.hp < 0) {
             death_sound.play();
@@ -161,9 +176,8 @@ $(document).ready(function () {
 
             $('.character, .opponent, .hero, .selection-img').off("click");
 
-        }
+        } else {
 
-        else {
             $('#attackInfo').text("You hit your opponent for " + (hero.attackPower * damage) + ". Your opponent's health is now at: " + oppo.hp + ". " + "Your opponent countered for: " + oppo.attackPower + " and left your health at " + hero.hp + ".");
 
         }
